@@ -1,0 +1,104 @@
+<html>
+<head>
+	<!-- include ExtJS css -->
+	<link rel="stylesheet" href="css/resources/css/ext-all.css" type="text/css" />
+
+	<!-- include ExtJS -->
+	<script type="text/javascript" src="js/ext-all-dev.js"></script>
+
+	<!-- include Bancha and the remote API -->
+	<script type="text/javascript" src="Bancha/js/Bancha-dev.js"></script> 
+	<!-- for the github version use /Bancha/js/Bancha.js -->
+	<script type="text/javascript" src="bancha-api.js"></script>
+	<!-- Scaffold -->
+	<script type="text/javascript" src="js/bancha-scaffold-debug.js"></script>
+
+	<style type="text/css">
+	.icon-add { background-image:url(img/icons/add.png) ! important; }
+	.icon-save { background-image:url(img/icons/disk.png) ! important; }
+	.icon-reset { background-image:url(img/icons/arrow_undo.png) ! important; }
+	.icon-upload { background-image:url(img/icons/image_add.png) ! important; }
+	.icon-edit-user { background-image:url(img/icons/user_edit.png) ! important; }
+	</style>
+	<script type="text/javascript">
+	// Bancha.onModelReady(['User'], function(){
+	// 	Ext.create('Ext.data.Store', {
+	// 	    scaffold: 'Bancha.model.User',
+	// 	    title: 'User Grid with full CRUD support',
+	// 	    renderTo: Ext.getBody()
+	// 	});
+
+
+	// });
+	// Bancha.scaffold.Grid.destroyButtonConfig.items[0].icon = 'img/icons/user_delete.png';
+
+
+Ext.direct.Manager.addProvider(Bancha.REMOTE_API);
+
+
+// setup the path to the delete image in local environments
+Bancha.scaffold.Grid.destroyButtonConfig.items[0].icon = 'img/icons/delete.png';
+
+
+// define the article model
+Ext.define('Bancha.model.User', {
+    extend: 'Ext.data.Model',
+	scaffold: 'Bancha.model.User',
+    proxy: {
+        type: 'direct',
+        batchActions: false,
+        api: {
+            read    : Bancha.RemoteStubs.User.read,
+            create  : Bancha.RemoteStubs.User.create,
+            update  : Bancha.RemoteStubs.User.update,
+            destroy : Bancha.RemoteStubs.User.destroy
+        },
+        reader: {
+            type: 'json',
+            root: 'data',
+            messageProperty: 'message'
+        },
+        writer: {
+            type: 'json',
+            writeAllFields: false,
+            root: 'data'
+        }
+    },
+    idProperty:'id',
+    fields:[
+        {
+            name:'id',
+            type:'int'
+        },{
+            name:'username',
+            type:'string'
+        },{
+            name:'role',
+            type:'string'
+        },{
+            name:'reports',
+            type:'string'
+        },{
+            name:'created',
+            type:'date',
+            dateFormat:'Y-m-d H:i:s'
+        },{
+            name:'modified',
+            type:'date',
+            dateFormat:'Y-m-d H:i:s'
+        }],
+        validations:[{
+            type:'presence',
+            field:'username'
+        },{
+            type:'numberformat',
+            field:'id'
+        }
+    ]
+});	
+	</script>
+</head>
+<body>
+	<h1>Leads Manager</h1>
+</body>
+</html>

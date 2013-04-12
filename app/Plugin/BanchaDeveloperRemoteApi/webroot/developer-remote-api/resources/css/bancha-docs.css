@@ -1,0 +1,44 @@
+/* start page styling */
+#center-container .api-intro {
+    font-size: 18px;
+    padding: 30px 20px 30px 0;
+    line-height: 120%;
+}
+#center-container .class-list .section.legend {
+    width: 80%;
+    float:none;
+}
+#center-container .class-list .section.legend ul {
+    float: none;
+}
+
+
+/* left side icon support */
+.x-tree-icon-leaf {
+	width: 20px;
+}
+.icon-crud-controller { background: url(../images/icons.png) no-repeat -3px -84px !important; }
+.icon-remotable-controller { background: url(../images/icons.png) no-repeat -3px -137px !important; }
+.icon-crud-remotable-controller { background: url(../images/icons.png) no-repeat -1px -219px !important; }
+
+
+/* class rendering */
+#center-container h1.class .author {
+	font-size: 10px;
+}
+#center-container h1.class .author a {
+	color: #929292;
+	margin-left: 0;
+	padding: 0;
+	background: 0;
+}
+#center-container h1.class .author a:hover {
+	text-decoration: underline;
+}
+
+
+/* search icons */
+#search-dropdown .item.method { background: url(../images/properties.png) no-repeat 3px 8px; } /* use the property icon */
+#search-dropdown .item.x-view-over { background-color: #FFFFAA; } /* this must be "overforcing"stronger then the rule above */
+
+/* eof */

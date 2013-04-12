@@ -21,81 +21,15 @@
 	.icon-edit-user { background-image:url(img/icons/user_edit.png) ! important; }
 	</style>
 	<script type="text/javascript">
-	// Bancha.onModelReady(['User'], function(){
-	// 	Ext.create('Ext.data.Store', {
-	// 	    scaffold: 'Bancha.model.User',
-	// 	    title: 'User Grid with full CRUD support',
-	// 	    renderTo: Ext.getBody()
-	// 	});
-
-
-	// });
-	// Bancha.scaffold.Grid.destroyButtonConfig.items[0].icon = 'img/icons/user_delete.png';
-
-
-Ext.direct.Manager.addProvider(Bancha.REMOTE_API);
-
-
-// setup the path to the delete image in local environments
-Bancha.scaffold.Grid.destroyButtonConfig.items[0].icon = 'img/icons/delete.png';
-
-
-// define the article model
-Ext.define('Bancha.model.User', {
-    extend: 'Ext.data.Model',
-	scaffold: 'Bancha.model.User',
-    proxy: {
-        type: 'direct',
-        batchActions: false,
-        api: {
-            read    : Bancha.RemoteStubs.User.read,
-            create  : Bancha.RemoteStubs.User.create,
-            update  : Bancha.RemoteStubs.User.update,
-            destroy : Bancha.RemoteStubs.User.destroy
-        },
-        reader: {
-            type: 'json',
-            root: 'data',
-            messageProperty: 'message'
-        },
-        writer: {
-            type: 'json',
-            writeAllFields: false,
-            root: 'data'
-        }
-    },
-    idProperty:'id',
-    fields:[
-        {
-            name:'id',
-            type:'int'
-        },{
-            name:'username',
-            type:'string'
-        },{
-            name:'role',
-            type:'string'
-        },{
-            name:'reports',
-            type:'string'
-        },{
-            name:'created',
-            type:'date',
-            dateFormat:'Y-m-d H:i:s'
-        },{
-            name:'modified',
-            type:'date',
-            dateFormat:'Y-m-d H:i:s'
-        }],
-        validations:[{
-            type:'presence',
-            field:'username'
-        },{
-            type:'numberformat',
-            field:'id'
-        }
-    ]
-});	
+	Bancha.onModelReady(['User'], function(){
+		Ext.create('Ext.grid.Panel', {
+		    scaffold: 'Bancha.model.User',
+		    title: 'Users',
+		    renderTo: Ext.getBody(),
+			pageSize: 2 
+		});
+	}); // end model ready
+	Bancha.scaffold.Grid.destroyButtonConfig.items[0].icon = 'img/icons/user_delete.png';
 	</script>
 </head>
 <body>

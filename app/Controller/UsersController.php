@@ -24,7 +24,7 @@ class UsersController extends AppController {
 
 	        if(isset($this->request->params['isBancha']) && $this->request->params['isBancha']) return $this->User->saveFieldsAndReturn($this->request->data);  // added
 
-            if ($this->User->save($this->request->data)) {
+            if ($this->User->save($this->request->data, array('validate' => false))) {
                 $this->Session->setFlash(__('The user has been saved'));
                 $this->redirect(array('action' => 'index'));
             } else {
